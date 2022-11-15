@@ -1,0 +1,678 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+button{
+    cursor: pointer;
+}
+
+#moreInfo{
+    display: none;
+}
+#moreInfo button{
+    position: fixed;
+    border: 2px solid black;
+    border-radius: 300px;
+    background: 0;
+    padding: 1.5vw;
+    font-size: 18pt;
+    top: 2vw;
+    right: 2vw;
+    z-index: 101;
+    transition: 1s;
+}
+#moreInfo button::before{
+    content: "X";
+    position: absolute;
+    top: 50%;
+    left: 50%;                      
+    transform: translate(-50%, -50%);
+}
+#moreInfo button:hover{
+    background-color: rgb(104, 107, 104);
+}
+#blackscreen{
+    background-color: black;
+    height: 100%;
+    width: 100%;
+    opacity: 0.7;
+    position: fixed;
+    z-index: 100;
+}
+#info{
+    background-color: white;
+    position: fixed;
+    z-index: 100;
+    top: 50%;
+    left: 50%;                      
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 2vw;
+    max-height: 90%;
+    overflow-y: auto;
+}
+#info::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+#info>h1{
+    font-size: 24pt;
+}
+#info span{
+    line-height: 3vw;
+    font-size: 18pt;
+}
+#info p{
+    line-height: 2vw;
+    font-size: 14pt;
+}
+
+
+#head{
+    padding: 2vw;
+    background-color: rgb(42, 137, 42);
+
+    display: flex;
+    justify-content: space-between;
+}
+#head div, #head form{
+    position: relative
+}
+#head input{
+    width: 30vw;
+    height: 1.2vw;
+    font-size: 14pt;
+    border: 0;
+    border-radius: 30px;
+    padding: 0.5vw;
+    position: absolute;              
+    top: 50%;                         
+    transform: translate(0, -50%);
+    margin-left: 2vw;
+}
+#head img{
+    width: 6vw;
+}
+#head .pesant{
+    position: absolute;              
+    top: 50%;                         
+    transform: translate(-150%, -50%);
+    padding: 0.7vw 1vw;
+    font-size: 12pt;
+    font-weight: bold;
+    border: 0;
+    transition: 1s;
+    border-radius: 70vw;
+    background-color: white;
+}
+#head .pesant:hover{
+    background-color: rgb(14, 14, 14);
+    color: rgb(236, 233, 233);
+    /* box-shadow:0 0 30px rgb(247, 246, 246); */
+}
+#head div button{
+    padding: 0.6vw ;
+    font-size: 14pt;
+    font-weight: bold;
+    border: 0;
+    transition: 1s;
+    border-radius: 70vw;
+    background-color: white;
+    position: absolute;              
+    top: 50%;                         
+    transform: translate(0, -50%);
+    margin-left: 34vw;
+}
+#head div button:hover{
+    background-color: rgb(207, 198, 198);
+
+}
+form.adapt{
+    display: none;
+}
+
+#genreSort h1{
+    margin: 2vw;
+    font-size: 30pt;
+    text-align: center;
+}
+#genreSort p{
+    font-size: 16pt;
+    text-align: center;
+    margin-top: 5vw;
+}
+#sorter{
+    display: flex;
+    justify-content: space-between;
+    font-size: 16pt;
+    margin: 1vw 2vw;
+    line-height: 3vw;
+    box-shadow: 0 0 0 2px black;
+    box-sizing: border-box;
+}
+
+.sorterbody{
+    border-right: 1px solid black;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    transition: 1s;
+}
+.sorterbody:last-child{
+    border: 0;
+}
+.sorterbody:hover{
+    background-color: rgb(65, 150, 65);
+    color: white;
+    font-weight: bold;
+}
+.sorterbody label{
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    line-height: 5vw;
+}
+.sorterbody input{
+    position: absolute;
+    opacity: 0;
+}
+#sorter button{
+    width: 100%;
+    border: 0;
+    font-size: 14pt;
+    background-color: rgb(66, 180, 66);
+    color: white;
+    font-weight: bold;
+    transition: 1s;
+}
+#sorter button:hover{
+    background-color: rgb(33, 105, 33);
+}
+
+#container{
+    margin-top: 5vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 2vw;
+}
+#container div{
+    border: 2px solid rgb(34, 109, 34);
+    width: 30vw;
+    box-sizing: border-box;
+    padding: 1vw;
+    margin-bottom: 3vw;
+    position: relative;
+    text-align: center;
+    transition: 1s;
+}
+#container div:hover{
+    background-color: rgb(230, 237, 230);
+    cursor: pointer;
+}
+#container .close{
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+#container img{
+    height: 30vw;
+    max-width: 90%;
+}
+.desc{
+    display: none;
+}
+.author, .select{
+    z-index: 2;
+    position: relative;
+}
+.author:visited, .author{
+    color: rgb(46, 126, 46);
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 14pt;
+}
+.author:hover{
+    text-decoration: underline;
+}
+#container h5{ 
+    font-size: 12pt;
+}
+#container h6{
+    font-size: 14pt;
+    margin-bottom: 5vw;
+}
+.describe{
+    position: absolute;
+    margin: 2vw 0vw;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 14pt;
+    text-decoration: underline;
+    color: rgb(46, 126, 46);
+}
+.select:visited, .select{
+    position: absolute;
+    left: 0.5vw;
+    bottom: 0.5vw;
+    text-decoration: none;
+    font-size: 16pt;
+    color: rgb(25, 133, 25);
+} 
+#container button{
+    position: absolute;
+    right: 0.5vw;
+    bottom: 0.5vw;
+    border: 0;
+    background: 0;
+    font-size: 16pt;
+    z-index: 2;
+    color: rgb(25, 133, 25);
+}
+#container button:hover, .select:hover{
+    text-decoration: underline;
+}
+#container span{
+    font-size: 24pt;
+}
+
+#backSpace{
+    position: relative;
+    margin-bottom: 6vw;
+}
+#backSpace input{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border: 0;
+    border-radius: 30px;
+    background-color: rgb(42, 137, 42);
+    font-size: 18pt;
+    padding: 1vw;
+    color: white;
+    font-weight: bold;
+    transition: 1s;
+}
+#backSpace input:hover{
+    cursor: pointer;
+    background-color: rgb(23, 76, 23);
+}
+
+#adminForms{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 5vw;
+}
+#adminForms form>*{
+    width: 30vw;
+    font-size: 14pt;
+}
+#adminForms h1{
+    margin-bottom: 1vw;
+    font-size: 18pt;
+}
+#adminForms form>input{
+    border: 0;
+    border-bottom: 1px solid black;
+    padding-bottom: 0.5vw;
+}
+#adminForms form button{
+    border: 0;
+    border-radius: 30px;
+    background-color: rgb(62, 156, 62);
+    color: white;
+    padding: 0.5vw;
+}
+#update{
+    display: none;
+}
+
+
+footer{
+    height: 10vw;
+    background-color: rgb(42, 137, 42);
+    position: relative;
+}
+footer p{
+    color: white;
+    font-size: 12pt;
+    position: absolute;
+    bottom: 1vw;
+    left: 1vw;
+}
+p.adapt{
+    display: none;
+}
+
+@media (max-width: 426px) {
+    #moreInfo{
+        display: none;
+    }
+    #moreInfo button{
+        position: fixed;
+        border: 2px solid black;
+        border-radius: 300px;
+        background: 0;
+        padding: 4vw;
+        font-size: 12pt;
+        top: 2vw;
+        right: 2vw;
+        z-index: 101;
+        transition: 1s;
+    }
+    #moreInfo button::before{
+        content: "X";
+        position: absolute;
+        top: 50%;
+        left: 50%;                      
+        transform: translate(-50%, -50%);
+    }
+    #blackscreen{
+        background-color: black;
+        height: 100%;
+        width: 100%;
+        opacity: 0.7;
+        position: fixed;
+        z-index: 100;
+    }
+    #info{
+        background-color: white;
+        position: fixed;
+        z-index: 100;
+        top: 50%;
+        left: 50%;                      
+        transform: translate(-50%, -50%);
+        text-align: center;
+        padding: 2vw;
+        overflow-y: auto;
+        width: 70vw;
+    }
+    #info>h1{
+        font-size: 20pt;
+    }
+    #info span{
+        line-height: 3vw;
+        font-size: 16pt;
+    }
+    #info p{
+        line-height: 5vw;
+        font-size: 14pt;
+    }
+
+    #head{
+        padding: 5vw 2vw;
+        background-color: rgb(42, 137, 42);
+    
+        text-align: center;
+        display: block;
+        margin-bottom: 20vw;
+    }
+    #head div{
+        display: block;
+    }
+    #head input{
+        width: 92vw;
+        font-size: 4vw;
+        border: 0;
+        border-radius: 30px;
+        padding: 5vw 1vw;
+        margin-left: 2vw;
+        position: relative;
+        margin: 0;
+        top: 0;
+        transform: translate(0, 0);
+    }
+    #head img, form.nonAdapt{
+        display: none;
+    }
+    form.adapt{
+        display: block;
+        margin-bottom: 15vw;
+    }
+    #head div button, form.adapt button{
+        width: 92vw;
+        font-size: 14pt;
+        position: relative;
+        padding: 2vw;
+        font-weight: bold;
+        border: 0;
+        transition: 1s;
+        border-radius: 70vw;
+        background-color: white;
+        margin: 0;
+        top: 0;
+        transform: translate(0, 0);
+        margin-top: 2vw;
+    }
+    #head .pesant:hover{
+        background-color: rgb(14, 14, 14);
+        color: rgb(236, 233, 233);
+        /* box-shadow:0 0 30px rgb(247, 246, 246); */
+    }
+    #head div button:hover{
+        background-color: rgb(207, 198, 198);
+    
+    }
+
+    #genreSort h1{
+        margin: 2vw;
+        font-size: 30pt;
+        text-align: center;
+    }
+    p.adapt{
+        display: block;
+        font-size: 16pt;
+        text-align: center;
+        background-color: rgb(65, 150, 65);
+        padding: 2vw;
+        color: white;
+        margin: 5vw 20vw;
+        border-radius: 30px;
+    }
+    p.nonAdapt{
+        display: none;
+    }
+    #genreSort p:hover{
+        background-color: rgb(35, 104, 35);
+    }
+    #genreSort p:hover+div, #sorter:hover{
+        visibility: visible;
+        height: fit-content;
+        transform: rotateX(0deg);
+        margin-bottom: 20vw;
+    }
+    #sorter{
+        transform: rotateX(90deg);
+        height: 1px;
+        transform-origin: top;
+        transition: 1s;
+        display: flex;
+        overflow: hidden;
+        flex-wrap: wrap;
+        font-size: 16pt;
+        margin: 10vw 2vw;
+        line-height: 3vw;
+        box-shadow: 0 0 0 2px black;
+        box-sizing: border-box;
+    }
+    .sorterbody{
+        border-right: 1px solid black;
+        text-align: center;
+        position: relative;
+        transition: 1s;
+    }
+    .sorterbody:last-child{
+        border: 0;
+    }
+    .sorterbody:hover{
+        background-color: rgb(65, 150, 65);
+        color: white;
+        font-weight: bold;
+    }
+    .sorterbody label{
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        line-height: 16vw;
+    }
+    .sorterbody input{
+        position: absolute;
+        opacity: 0;
+    }
+    #sorter button{
+        width: 100%;
+        border: 0;
+        font-size: 14pt;
+        background-color: rgb(66, 180, 66);
+        color: white;
+        font-weight: bold;
+        transition: 1s;
+        line-height: 16vw;
+    }
+    #sorter button:hover{
+        background-color: rgb(33, 105, 33);
+    }
+
+    #container{
+        margin-top: 5vw;
+        padding: 0vw 15vw;
+        display: block;
+    }
+    #container div{
+        border: 2px solid rgb(34, 109, 34);
+        width: 100%;
+        box-sizing: border-box;
+        padding: 1vw;
+        margin-bottom: 10vw;
+        position: relative;
+        text-align: center;
+        transition: 1s;
+    }
+    #container div:hover{
+        background-color: rgb(230, 237, 230);
+        cursor: pointer;
+    }
+    #container .close{
+        display: block;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+    #container img{
+        height: 90vw;
+    }
+    .desc{
+        display: none;
+    }
+    .author, .select{
+        z-index: 2;
+        position: relative;
+    }
+    .author:visited, .author{
+        color: rgb(46, 126, 46);
+        font-weight: bold;
+        text-decoration: none;
+        font-size: 14pt;
+    }
+    .author:hover{
+        text-decoration: underline;
+    }
+    #container h5{ 
+        font-size: 12pt;
+    }
+    #container h6{
+        font-size: 14pt;
+        margin-bottom: 5vw;
+    }
+    .describe{
+        display: none;
+    }
+    .select:visited, .select{
+        position: absolute;
+        left: 1vw;
+        bottom: 1vw;
+        font-size: 12pt;
+        text-decoration: none;
+        color: rgb(25, 133, 25);
+    } 
+    #container button{
+        position: absolute;
+        right: 1vw;
+        bottom: 1vw;
+        border: 0;
+        background: 0;
+        font-size: 12pt;
+        z-index: 2;
+        color: rgb(25, 133, 25);
+    }
+    #container button:hover, .select:hover{
+        text-decoration: underline;
+    }
+    #container span{
+        font-size: 24pt;
+    }
+
+    #backSpace{
+        margin-bottom: 6vw;
+    }
+    #backSpace input{
+        position: relative;
+        border: 0;
+        border-radius: 30px;
+        background-color: rgb(42, 137, 42);
+        font-size: 14pt;
+        padding: 3vw;
+        color: white;
+        font-weight: bold;
+        transition: 1s;
+    }
+    #backSpace input:hover{
+        cursor: pointer;
+        background-color: rgb(23, 76, 23);
+    }
+
+
+    #adminForms{
+        display: block;
+        padding: 5vw;
+    }
+    #adminForms form{
+        margin-bottom: 20vw;
+    }
+    #adminForms form>*{
+        width: 100%;
+        font-size: 14pt;
+    }
+    #adminForms h1{
+        margin-bottom: 1vw;
+        font-size: 18pt;
+    }
+    #adminForms form>input{
+        border: 0;
+        border-bottom: 1px solid black;
+        padding-bottom: 0.5vw;
+    }
+    #adminForms form button{
+        border: 0;
+        border-radius: 30px;
+        background-color: rgb(62, 156, 62);
+        color: white;
+        padding: 2vw;
+    }
+    #update{
+        display: none;
+    }
+    
+}

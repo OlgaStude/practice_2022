@@ -1,0 +1,55 @@
+$title = $data['title'];
+    $description = $data['description'];
+    $year = $data['year'];
+    $genre = $data['genre'];
+    $author = $data['author'];
+    $author = explode(',', $author);
+
+
+    $res = mysqli_fetch_assoc(mysqli_query($conect, "SELECT * FROM `a_b` WHERE `id` = '$id'"));
+    $idbook = $res['id_book'];
+    $res = mysqli_fetch_assoc(mysqli_query($conect, "SELECT * FROM `books` WHERE `id` = '$idbook'"));
+    
+
+    if(isset($img['cover'])){
+        $cover = $img['cover'];
+        $cover_name = $cover['name'];
+        move_uploaded_file($cover['tmp_name'], '../practicefront/covers/'.$cover_name);
+
+        if($cover_name != $res['cover']){
+            unlink('../practicefront/covers/'.$res['cover']);
+        } 
+    } else {
+        $cover_name = $res['cover'];
+    }
+    mysqli_query($conect, "UPDATE `books` SET `title` = '$title', `cover` = '$cover_name', `description` = '$description', `year` = '$year', `genre` = '$genre' WHERE `books`.`id` = '$idbook'");
+
+    $resp = mysqli_query($conect, "SELECT * FROM `a_b` WHERE `id_book` = '$idbook'");
+
+    $arr = [];
+    while($posts = mysqli_fetch_assoc($resp)){
+        $arr[] = $posts;
+    }
+
+    $counter = count($author);
+
+    for($i = 0; $i < $counter; $i += 1){
+        $idforbook = $arr[$i]['id'];
+        if(mysqli_num_rows(mysqli_query($conect, "SELECT * FROM `authors` WHERE `name` = '$author[$i]'")) == 0){
+            mysqli_query($conect,"INSERT INTO `authors` (`id`, `name`) VALUES (NULL, '$author[$i]')");
+        }
+            $res = mysqli_fetch_assoc(mysqli_query($conect, "SELECT * FROM `authors` WHERE `name` = '$author[$i]'"));
+            $idauthor = $res['id'];
+
+            $res = mysqli_fetch_assoc(mysqli_query($conect, "SELECT * FROM `a_b` WHERE `id` = '$idforbook'"));
+            $idoldauthor = $res['id_author'];
+
+
+            mysqli_query($conect, "UPDATE `a_b` SET `id_author` = '$idauthor' WHERE `a_b`.`id` = '$idforbook'");
+
+            if(mysqli_num_rows(mysqli_query($conect, "SELECT * FROM `a_b` WHERE `id_author` = '$idoldauthor'")) == 0){
+                mysqli_query($conect, "DELETE FROM authors WHERE `authors`.`id` = '$idoldauthor'");
+            }
+
+
+    }
